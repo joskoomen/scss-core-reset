@@ -1,0 +1,40 @@
+@mixin global-reset() {
+  
+  // 1. Correct the line height in all browsers.
+  // 2. Prevent adjustments of font size after orientation changes in iOS.
+  html {
+    line-height: 1.15; // 1
+    -webkit-text-size-adjust: 100%; // 2
+    box-sizing: border-box;
+    font-size: $global-font-size;
+  }
+  
+  // Set box-sizing globally to handle padding and border widths
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  
+  * {
+    &:focus {
+      outline: none;
+    }
+  }
+  
+  // Default body styles
+  body {
+    margin: 0;
+    padding: 0;
+    background: $body-background;
+    font-family: $body-font-family;
+    font-weight: $global-weight-normal;
+    line-height: $global-lineheight;
+    color: $body-font-color;
+    
+    @if ($body-antialiased) {
+      -webkit-font-smoothing: antialiased; // sass-lint:disable-line no-vendor-prefixes
+      -moz-osx-font-smoothing: grayscale; // sass-lint:disable-line no-vendor-prefixes
+    }
+  }
+}

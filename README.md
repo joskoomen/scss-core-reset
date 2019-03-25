@@ -1,1 +1,2 @@
-# scss-core-reset
+# Scss | Core - Reset
+

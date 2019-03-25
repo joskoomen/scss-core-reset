@@ -1,0 +1,272 @@
+@charset "UTF-8";
+
+@mixin typography-reset() {
+  
+  div,
+  dl,
+  dt,
+  dd,
+  ul,
+  ol,
+  li,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  pre,
+  form,
+  p,
+  blockquote,
+  figure,
+  th,
+  td {
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+  }
+  
+  // Headings
+  h1, .h1,
+  h2, .h2,
+  h3, .h3,
+  h4, .h4,
+  h5, .h5,
+  h6, .h6 {
+    font-family: $header-font-family;
+    font-style: $header-font-style;
+    font-weight: $header-font-weight;
+    color: $header-color;
+    text-rendering: $header-text-rendering;
+    
+    small {
+      line-height: 0;
+      color: $header-small-font-color;
+    }
+  }
+  
+  // Heading styles
+  @each $size, $headers in $header-styles {
+    @include breakpoint($size) {
+      @each $header, $header-defs in $headers {
+        $font-size-temp: 1rem;
+        #{$header}, .#{$header} {
+          
+          @if map-has-key($header-defs, font-size) {
+            $font-size-temp: rem-calc(map-get($header-defs, font-size));
+            font-size: $font-size-temp;
+          } @else if map-has-key($header-defs, fs) {
+            $font-size-temp: rem-calc(map-get($header-defs, fs));
+            font-size: $font-size-temp;
+          } @else if $size == $-jk-zero-breakpoint {
+            font-size: $font-size-temp;
+          }
+          @if map-has-key($header-defs, line-height) {
+            line-height: unitless-calc(map-get($header-defs, line-height), $font-size-temp);
+          } @else if map-has-key($header-defs, lh) {
+            line-height: unitless-calc(map-get($header-defs, lh), $font-size-temp);
+          } @else if $size == $-jk-zero-breakpoint {
+            line-height: unitless-calc($header-lineheight, $font-size-temp);
+          }
+          
+          @if map-has-key($header-defs, margin-top) {
+            margin-top: rem-calc(map-get($header-defs, margin-top));
+          } @else if map-has-key($header-defs, mt) {
+            margin-top: rem-calc(map-get($header-defs, mt));
+          } @else if $size == $-jk-zero-breakpoint {
+            margin-top: 0;
+          }
+          @if map-has-key($header-defs, margin-bottom) {
+            margin-bottom: rem-calc(map-get($header-defs, margin-bottom));
+          } @else if map-has-key($header-defs, mb) {
+            margin-bottom: rem-calc(map-get($header-defs, mb));
+          } @else if $size == $-jk-zero-breakpoint {
+            margin-bottom: rem-calc($header-margin-bottom);
+          }
+        }
+      }
+    }
+  }
+  
+  p {
+    margin-bottom: $paragraph-margin-bottom;
+    font-size: inherit;
+    line-height: $paragraph-lineheight;
+    text-rendering: $paragraph-text-rendering;
+  }
+  
+  a {
+    // Remove the gray background on active links in IE 10.
+    background-color: transparent;
+    
+    line-height: inherit;
+    color: $links-color;
+    text-decoration: $links-text-decoration;
+    cursor: pointer;
+    
+    &:hover,
+    &:focus {
+      color: $links-color-hover;
+      @if $links-text-decoration-hover != $links-text-decoration {
+        text-decoration: $links-text-decoration-hover;
+      }
+    }
+    
+    img {
+      border: 0;
+    }
+  }
+  
+  hr {
+    clear: both;
+    
+    max-width: $hr-width;
+    height: 0;
+    margin: $hr-margin;
+    
+    border-top: 0;
+    border-right: 0;
+    border-bottom: $hr-border;
+    border-left: 0;
+  }
+  
+  em,
+  i {
+    font-style: italic;
+    line-height: inherit;
+  }
+  
+  // Lists
+  ul,
+  ol,
+  dl {
+    margin-bottom: $list-margin-bottom;
+    list-style-position: $list-style-position;
+    line-height: $list-lineheight;
+  }
+  
+  // List items
+  li {
+    font-size: inherit;
+  }
+  
+  // Unordered lists
+  ul {
+    margin-left: $list-side-margin;
+    list-style-type: $list-style-type;
+  }
+  
+  // Ordered lists
+  ol {
+    margin-left: $list-side-margin;
+  }
+  
+  // Nested unordered/ordered lists
+  ul, ol {
+    & & {
+      margin-left: $list-nested-side-margin;
+      margin-bottom: 0;
+    }
+  }
+  
+  ul, ol {
+    // Use to remove numbers from ordered list & bullets from unordered list
+    &.no-bullet {
+      margin-left: 0;
+      list-style: none;
+    }
+  }
+  
+  // Definition lists
+  dl {
+    margin-bottom: $defnlist-margin-bottom;
+    
+    dt {
+      margin-bottom: $defnlist-term-margin-bottom;
+      font-weight: $defnlist-term-weight;
+    }
+  }
+  
+  pre {
+    overflow: auto;
+  }
+  
+  // Add the correct font weight in Chrome, Edge, and Safari.
+  b,
+  strong {
+    font-weight: $global-weight-bold;
+    line-height: inherit;
+  }
+  
+  // 1. Correct the inheritance and scaling of font size in all browsers.
+  // 2. Correct the odd `em` font sizing in all browsers.
+  code,
+  kbd,
+  samp {
+    font-family: monospace, monospace; // 1
+    font-size: 1em; // 2
+  }
+  
+  kbd {
+    margin: 0;
+    padding: $keystroke-padding;
+    
+    background-color: $keystroke-background;
+    
+    font-family: $keystroke-font;
+    color: $keystroke-color;
+    
+    @if has-value($keystroke-radius) {
+      border-radius: $keystroke-radius;
+    }
+  }
+  
+  // Add the correct font size in all browsers.
+  small {
+    font-size: $small-font-size;
+    line-height: inherit;
+  }
+  
+  // Prevent `sub` and `sup` elements from affecting the line height in
+  // all browsers.
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  
+  sub {
+    bottom: -0.25em;
+  }
+  
+  sup {
+    top: -0.5em;
+  }
+  
+  // Abbreviations
+  abbr, abbr[title] {
+    border: none;
+    cursor: help;
+    text-decoration: none;
+  }
+  
+  blockquote {
+    margin: 0 0 $paragraph-margin-bottom;
+    padding: $blockquote-padding;
+    border-left: $blockquote-border;
+    
+    &, p {
+      line-height: $paragraph-lineheight;
+      color: $blockquote-color;
+    }
+  }
+  
+  
+}
