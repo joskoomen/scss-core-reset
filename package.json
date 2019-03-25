@@ -1,0 +1,25 @@
+{
+    "name": "@joskoomen/scss-core-reset",
+    "version": "1.0.0",
+    "description": "Scss Core Normalize",
+    "main": "src/_index.scss",
+    "author": "Jos Koomen <hello@joskoo.men>",
+    "license": "MIT",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "@joskoomen/scss-core": "^1.*"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:joskoomen/scss-core-reset.git"
+    },
+    "keywords": [
+        "core",
+        "boilerplate",
+        "joskoomen",
+        "scss"
+    ],
+    "homepage": "https://github.com/joskoomen/scss-core-reset"
+}

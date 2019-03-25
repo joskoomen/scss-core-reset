@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+@mixin ui-reset() {
+  
+  img {
+    border-style: none;
+    
+    // Get rid of gap under images by making them display: inline-block; by default
+    display: inline-block;
+    vertical-align: middle;
+    
+    // Grid defaults to get images and embeds to work properly
+    max-width: 100%;
+    height: auto;
+    -ms-interpolation-mode: bicubic;
+  }
+  
+  // Styles Google Maps and MapQuest embeds properly
+  // sass-lint:disable-line no-ids
+  .map_canvas,
+  .mqa-display {
+    img,
+    embed,
+    object {
+      max-width: none !important;
+    }
+  }
+}

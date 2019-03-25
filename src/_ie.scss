@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+@mixin ie-reset() {
+  details {
+    display: block;
+  }
+  
+  summary {
+    display: list-item;
+  }
+  
+  template {
+    display: none;
+  }
+  
+  [hidden] {
+    display: none;
+  }
+  
+}
