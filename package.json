@@ -1,6 +1,6 @@
 {
     "name": "@joskoomen/scss-core-reset",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Scss Core Normalize",
     "main": "src/_index.scss",
     "author": "Jos Koomen <hello@joskoo.men>",
