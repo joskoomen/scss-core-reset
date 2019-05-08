@@ -1,6 +1,6 @@
 {
     "name": "@joskoomen/scss-core-reset",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Scss Core Normalize",
     "main": "src/_index.scss",
     "author": "Jos Koomen <hello@joskoo.men>",
@@ -9,7 +9,7 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
-        "@joskoomen/scss-core": "^1.*"
+        "@joskoomen/scss-core": "^1.0.2"
     },
     "repository": {
         "type": "git",
